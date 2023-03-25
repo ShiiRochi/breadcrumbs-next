@@ -71,16 +71,21 @@ export default function NextBreadcrumbs({
     // Вопрос только в том, как их удалять? Ну разве что брать всё до, потом после и удалять этот параметр. То есть нужно понимать какое место он занимает и генерировать "УДАЛЯТОР", "ГДЕ УДАЛЯТОР???!!!"
     const crumbs = asPathNestedRoutes.map((subpath, idx) => {
       // "[post_id]" --> "post_id"
-      const param = pathnameNestedRoutes[idx].replace(/[[\]]/gm, '');
+      try {
+        const param = pathnameNestedRoutes[idx].replace(/[[\]]/gm, '');
 
-      const href = `/${asPathNestedRoutes.slice(0, idx + 1).join('/')}`;
+        const href = `/${asPathNestedRoutes.slice(0, idx + 1).join('/')}`;
 
-      return {
-        href,
-        textGenerator: getTextGenerator(param, router.query),
-        text: getDefaultTextGenerator(subpath, href),
+        return {
+          href,
+          textGenerator: getTextGenerator(param, router.query),
+          text: getDefaultTextGenerator(subpath, href),
+        };
+      } catch (e) {
+        console.trace(e);
+        return false;
       };
-    });
+    }).filter(Boolean);
 
     return [{ href: '/', text: 'Home', textGenerator: null }, ...crumbs];
   }, [router.asPath, router.pathname, router.query, getTextGenerator, getDefaultTextGenerator]);

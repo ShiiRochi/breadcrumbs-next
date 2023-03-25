@@ -10,10 +10,17 @@ export const _defaultGetTextGenerator: GetTextGenerator = (param, query) => null
 
 export const _defaultGetDefaultTextGenerator: GetDefaultTextGenerator = (path) => path;
 
-export const generatePathParts: GeneratePathParts = (path) => path
-    .replace(/\?.+/gm, '')
-    .split('/')
-    .filter(Boolean);
+export const generatePathParts: GeneratePathParts = (path): string[] => {
+    try {
+    return path
+        .replace(/\?.+/gm, '')
+        .split('/')
+        .filter(Boolean);
+    } catch (err) {
+        console.trace(err);
+        return [];
+    }
+};
 
 /**
  * The helper to render any kind of react component.
