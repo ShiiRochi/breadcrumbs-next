@@ -8,6 +8,7 @@ export default function Home() {
         description="The example of NextBreadcrumbs usage with catch all routes"
       />
       <main>
+          MAIN PAGE
       </main>
     </div>
   );
