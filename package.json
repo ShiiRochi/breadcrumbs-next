@@ -1,6 +1,6 @@
 {
-  "name": "next-breadcrumbs",
-  "version": "1.0.0",
+  "name": "breadcrumbs-next",
+  "version": "0.0.0",
   "author": "Denis <ShiiRochi/> Bogdanenko (shiirochi@yandex.ru)",
   "description": "The component to display breadcrumbs within NextJS web application",
   "keywords": [
@@ -21,7 +21,8 @@
     "prebuild": "rm -rf dist",
     "build": "rollup -c",
     "postbuild": "rm -rf dist/types",
-    "build:watch": "rollup -c -w"
+    "build:watch": "rollup -c -w",
+    "prepublishOnly": "yarn build"
   },
   "license": "MIT",
   "devDependencies": {

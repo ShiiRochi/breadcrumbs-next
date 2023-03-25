@@ -5,14 +5,6 @@ import terser from "@rollup/plugin-terser";
 import dts from "rollup-plugin-dts";
 import external from "rollup-plugin-peer-deps-external";
 
-// const pkg = await import("./package.json", {
-//     assert: {
-//         type: "json"
-//     }
-// })
-// import pkg from "./package.json";
-// const pkg = require("./package.json");
-
 export default [
     {
         input: "src/index.tsx",
@@ -32,8 +24,12 @@ export default [
         plugins: [
             external(),
             resolve(),
-            commonjs(),
-            typescript({ tsconfig: "./tsconfig.json" }),
+            commonjs({
+                include: "node_modules/**"
+            }),
+            typescript({
+                tsconfig: "./tsconfig.json"
+            }),
             terser()
         ],
     },
@@ -41,6 +37,8 @@ export default [
         input: "dist/types/index.d.ts",
         output: [{ file: "dist/index.d.ts", format: "esm" }],
         external: [/\.css$/],
-        plugins: [dts()]
+        plugins: [dts({
+            tsconfig: "./tsconfig.json"
+        })]
     }
 ];
