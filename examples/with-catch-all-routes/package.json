@@ -31,7 +31,8 @@
     "react-tsparticles": "^2.7.1",
     "tsparticles": "^2.7.1",
     "tsparticles-engine": "^2.7.1",
-    "twind": "^0.16.19"
+    "twind": "^0.16.19",
+    "breadcrumbs-next": "^1.0.0-alpha.0"
   },
   "devDependencies": {
     "@next/env": "13.2.4",

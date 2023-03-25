@@ -1,4 +1,4 @@
-import NextBreadcrumbs from "next-breadcrumbs";
+import NextBreadcrumbs from "breadcrumbs-next";
 
 export default function ItemsSlug () {
     return (
