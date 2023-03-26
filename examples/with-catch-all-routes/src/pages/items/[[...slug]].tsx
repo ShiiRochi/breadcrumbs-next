@@ -12,7 +12,7 @@ function Breadcrumbs({ children, ...props }) {
 
 const Crumb = createNextCrumbComponent(({ children, href, isLast, isFirst }) => {
   return (
-    <li aria-current={isLast ? "page" : null}>
+    <li aria-current={isLast ? 'page' : null}>
       <div className={tw`flex items-center`}>
         {!isFirst ? (
           <svg
@@ -57,9 +57,9 @@ const Crumb = createNextCrumbComponent(({ children, href, isLast, isFirst }) => 
 export default function ItemsSlug() {
   return (
     <>
-        <div className={tw`p-2`}>
-          <NextBreadcrumbs Container={Breadcrumbs} Crumb={Crumb} />
-        </div>
+      <div className={tw`p-2`}>
+        <NextBreadcrumbs Container={Breadcrumbs} Crumb={Crumb} />
+      </div>
       ItemsSlug Path
     </>
   );
