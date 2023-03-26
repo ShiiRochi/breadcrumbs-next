@@ -13,6 +13,8 @@ export type GetDefaultTextGenerator = (config: {
   query: NextRouter['query'];
 }) => string;
 
+export type TextGeneratorFn = () => Promise<string>;
+
 export type GetTextGenerator = (config: {
   paramName: string;
   paramValue: string;
@@ -23,7 +25,7 @@ export type GetTextGenerator = (config: {
   // a slug will create its own index counting context
   paramSlugIndex: number;
   query: NextRouter['query'];
-}) => null | Promise<string>;
+}) => null | TextGeneratorFn;
 export type GeneratePathParts = (path: string) => string[];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
