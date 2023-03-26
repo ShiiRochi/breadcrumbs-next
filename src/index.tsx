@@ -5,9 +5,10 @@ import {
   _defaultGetTextGenerator,
   flexRender,
   generatePathParts,
+  isCatchAllPatternNestedRoute,
+  TextGeneratorFn,
   GetDefaultTextGenerator,
   GetTextGenerator,
-  isCatchAllPatternNestedRoute,
 } from './utils';
 import { BreadCrumb } from './types';
 
@@ -32,8 +33,18 @@ export type NextBreadcrumbsProps = {
   homeText?: string;
 };
 
-export function createNextCrumbComponent(Component: FC): FC {
-  function NextCrumb({ text, textGenerator, ...props }) {
+export function createNextCrumbComponent(Component: FC<{ children: ReactNode }>): FC<{
+  text: string;
+  textGenerator: null | TextGeneratorFn;
+}> {
+  function NextCrumb({
+    text,
+    textGenerator,
+    ...props
+  }: {
+    text: string;
+    textGenerator: null | TextGeneratorFn;
+  }): JSX.Element {
     const [children, setChildren] = useState(text);
 
     useEffect(() => {
@@ -41,7 +52,7 @@ export function createNextCrumbComponent(Component: FC): FC {
 
       // TODO: maybe it's better to use subscription model
       async function handler() {
-        const text = await textGenerator();
+        const text = await (textGenerator as TextGeneratorFn)();
         setChildren(text);
       }
 
@@ -127,7 +138,15 @@ export default function NextBreadcrumbs({
       .filter(Boolean);
 
     return [{ href: '/', text: homeText, textGenerator: null }, ...crumbs];
-  }, [router.isReady, router.asPath, router.pathname, router.query, homeText, getTextGenerator, getDefaultTextGenerator]);
+  }, [
+    router.isReady,
+    router.asPath,
+    router.pathname,
+    router.query,
+    homeText,
+    getTextGenerator,
+    getDefaultTextGenerator,
+  ]);
 
   return (
     <Container aria-label="breadcrumb">
@@ -139,7 +158,6 @@ export default function NextBreadcrumbs({
           isFirst: idx === 0,
         });
       })}
-
     </Container>
   );
 }
