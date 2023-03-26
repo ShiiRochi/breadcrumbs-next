@@ -36,7 +36,7 @@ export default [
     {
         input: "dist/types/index.d.ts",
         output: [{ file: "dist/index.d.ts", format: "esm" }],
-        external: [/\.css$/],
+        external: [/\.css$/, "next/router"],
         plugins: [dts({
             tsconfig: "./tsconfig.json"
         })]
