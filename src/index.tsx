@@ -20,14 +20,16 @@ export type CrumbProps = {
 };
 
 export type NextBreadcrumbsProps = {
-  Container: FC<{ children: ReactNode }>;
+  Container: string | FC<{ children: ReactNode }>;
   Crumb: FC<CrumbProps>;
   // TODO: think about two props below,
   //  it may be that there is no need to have them both
-  getTextGenerator: GetTextGenerator;
-  getDefaultTextGenerator: GetDefaultTextGenerator;
+  getTextGenerator?: GetTextGenerator;
+  getDefaultTextGenerator?: GetDefaultTextGenerator;
   // TODO: являются параметры частью активного элемента или самый последний из крамбов является активным?
-  useQueryParamsAsPathItems: string[];
+  useQueryParamsAsPathItems?: string[];
+  // Determine the text for home link
+  homeText?: string;
 };
 
 export function createNextCrumbComponent(Component: FC): FC {
@@ -59,10 +61,13 @@ export default function NextBreadcrumbs({
   Crumb,
   getTextGenerator = _defaultGetTextGenerator,
   getDefaultTextGenerator = _defaultGetDefaultTextGenerator,
-}: NextBreadcrumbsProps): ReactNode {
+  homeText = 'Home',
+}: NextBreadcrumbsProps): JSX.Element {
   const router = useRouter();
 
   const breadcrumbs: BreadCrumb[] = useMemo(() => {
+    if (!router.isReady) return [];
+
     // Здесь будет уже конкретная ссылка
     const asPathSplit = generatePathParts(router.asPath);
 
@@ -93,14 +98,11 @@ export default function NextBreadcrumbs({
         // "[[...items]]" --> "items"
         const param = pathnameSplit[subpathPathnameItemIndex].replace(/[[\].]*/gm, '');
 
+        // TODO: with query parameters as breadcrumbs items it
+        //  should be changed respectively
+        // it's okay even with catch all routes
+        // ["items", "13", '132'] --> /items/13
         const href = `/${asPathSplit.slice(0, idx + 1).join('/')}`;
-
-        console.log({
-          param,
-          href,
-          subpathPathnameItemIndex,
-          isCatchAllSubpath,
-        });
 
         return {
           href,
@@ -124,8 +126,8 @@ export default function NextBreadcrumbs({
       })
       .filter(Boolean);
 
-    return [{ href: '/', text: 'Home', textGenerator: null }, ...crumbs];
-  }, [router.asPath, router.pathname, router.query, getTextGenerator, getDefaultTextGenerator]);
+    return [{ href: '/', text: homeText, textGenerator: null }, ...crumbs];
+  }, [router.isReady, router.asPath, router.pathname, router.query, homeText, getTextGenerator, getDefaultTextGenerator]);
 
   return (
     <Container aria-label="breadcrumb">
@@ -134,8 +136,10 @@ export default function NextBreadcrumbs({
           ...crumb,
           key: idx,
           isLast: idx === breadcrumbs.length - 1,
+          isFirst: idx === 0,
         });
       })}
+
     </Container>
   );
 }
