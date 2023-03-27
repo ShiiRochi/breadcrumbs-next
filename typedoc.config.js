@@ -1,7 +1,6 @@
 /** @type {import('typedoc').TypeDocOptions} */
 module.exports = {
-    tsconfig: "./tsconfig.json",
-    entryPoints: ["./src/index.ts"],
+    entryPoints: ["./dist/index.d.ts"],
     plugin: ["typedoc-plugin-markdown", "typedoc-plugin-rename-defaults"],
     skipErrorChecking: true,
     out: "doc",
