@@ -121,7 +121,8 @@ export default function NextBreadcrumbs({
             href,
             query: router.query,
             paramIndex: idx,
-            paramSlugIndex: idx,
+            isCatchAllSubpath,
+            paramSlugIndex: isCatchAllSubpath ? idx - catchAllRouteIndex : null,
           }),
           text: getDefaultTextGenerator({
             paramValue: subpath,
@@ -129,7 +130,8 @@ export default function NextBreadcrumbs({
             href,
             query: router.query,
             paramIndex: idx,
-            paramSlugIndex: idx,
+            isCatchAllSubpath,
+            paramSlugIndex: isCatchAllSubpath ? idx - catchAllRouteIndex : null,
           }),
         };
       })

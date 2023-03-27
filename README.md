@@ -70,11 +70,11 @@ They are behaviour modifiers of the page, but not its primary descriptor.
 
 #### Type declaration
 
-| Name            | Type       |
-|:----------------|:-----------|
-| `href`          | `string`   |
-| `text`          | `string`   |
-| `textGenerator` | ``null`` \ | [`TextGeneratorFn`](modules.md#textgeneratorfn) |
+| Name            | Type                        |
+|:----------------|:----------------------------|
+| `href`          | `string`                    |
+| `text`          | `string`                    |
+| `textGenerator` | ``null or TextGeneratorFn`` |
 
 ___
 
@@ -106,15 +106,16 @@ ___
 
 ##### Parameters
 
-| Name                    | Type                      |
-|:------------------------|:--------------------------|
-| `config`                | `Object`                  |
-| `config.href`           | `string`                  |
-| `config.paramIndex`     | `number`                  |
-| `config.paramName`      | `string`                  |
-| `config.paramSlugIndex` | `number`                  |
-| `config.paramValue`     | `string`                  |
-| `config.query`          | `NextRouter`[``"query"``] |
+| Name                       | Type                      |
+|:---------------------------|:--------------------------|
+| `config`                   | `Object`                  |
+| `config.href`              | `string`                  |
+| `config.paramIndex`        | `number`                  |
+| `config.paramName`         | `string`                  |
+| `config.isCatchAllSubpath` | `boolean`                 |
+| `config.paramSlugIndex`    | `null or number`          |
+| `config.paramValue`        | `string`                  |
+| `config.query`             | `NextRouter`[``"query"``] |
 
 ##### Returns
 
@@ -132,19 +133,20 @@ ___
 
 ##### Parameters
 
-| Name                    | Type                      |
-|:------------------------|:--------------------------|
-| `config`                | `Object`                  |
-| `config.href`           | `string`                  |
-| `config.paramIndex`     | `number`                  |
-| `config.paramName`      | `string`                  |
-| `config.paramSlugIndex` | `number`                  |
-| `config.paramValue`     | `string`                  |
-| `config.query`          | `NextRouter`[``"query"``] |
+| Name                       | Type                      |
+|:---------------------------|:--------------------------|
+| `config`                   | `Object`                  |
+| `config.href`              | `string`                  |
+| `config.paramIndex`        | `number`                  |
+| `config.paramName`         | `string`                  |
+| `config.isCatchAllSubpath` | `boolean`                 |
+| `config.paramSlugIndex`    | `null or number`          |
+| `config.paramValue`        | `string`                  |
+| `config.query`             | `NextRouter`[``"query"``] |
 
 ##### Returns
 
-``null`` | [`TextGeneratorFn`](modules.md#textgeneratorfn)
+``null`` | `TextGeneratorFn`
 
 ___
 
@@ -185,17 +187,13 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`NextBreadcrumbsProps`](modules.md#nextbreadcrumbsprops) |
+| Name             | Type                   |
+|:-----------------|:-----------------------|
+| `«destructured»` | `NextBreadcrumbsProps` |
 
 #### Returns
 
 `JSX.Element`
-
-#### Defined in
-
-index.d.ts:44
 
 ___
 
