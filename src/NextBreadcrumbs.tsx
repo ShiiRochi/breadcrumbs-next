@@ -25,8 +25,8 @@ export type NextBreadcrumbsProps = {
   //  it may be that there is no need to have them both
   getTextGenerator?: GetTextGenerator;
   getDefaultTextGenerator?: GetDefaultTextGenerator;
-  // TODO: являются параметры частью активного элемента или самый последний из крамбов является активным?
-  useQueryParamsAsPathItems?: string[];
+  // TODO: implement
+  // useQueryParamsAsPathItems?: string[];
   // Determine the text for home link
   homeText?: string;
 };
