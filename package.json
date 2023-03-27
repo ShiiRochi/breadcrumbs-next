@@ -21,7 +21,8 @@
     "build": "rollup -c",
     "postbuild": "rm -rf dist/types",
     "build:watch": "rollup -c -w",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "gendoc": "typedoc --options typedoc.config.js"
   },
   "license": "MIT",
   "devDependencies": {
