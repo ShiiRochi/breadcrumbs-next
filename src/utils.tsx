@@ -7,9 +7,10 @@ export type GetDefaultTextGenerator = (config: {
   href: string;
   // global index within path
   paramIndex: number;
+  isCatchAllSubpath: boolean;
   // The index of param under paramName with a given value within
   // a slug will create its own index counting context
-  paramSlugIndex: number;
+  paramSlugIndex: null | number;
   query: NextRouter['query'];
 }) => string;
 
@@ -21,9 +22,10 @@ export type GetTextGenerator = (config: {
   href: string;
   // global index within path
   paramIndex: number;
+  isCatchAllSubpath: boolean;
   // The index of param under paramName with a given value within
   // a slug will create its own index counting context
-  paramSlugIndex: number;
+  paramSlugIndex: null | number;
   query: NextRouter['query'];
 }) => null | TextGeneratorFn;
 export type GeneratePathParts = (path: string) => string[];
