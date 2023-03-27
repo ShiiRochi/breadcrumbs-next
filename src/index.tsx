@@ -1,7 +1,7 @@
 import NextBreadcrumbs, { NextBreadcrumbsProps, CrumbProps, createNextCrumbComponent } from "./NextBreadcrumbs";
 
 export type { NextBreadcrumbsProps, CrumbProps };
-export type { GetDefaultTextGenerator, GetTextGenerator } from "./utils";
+export type { GetDefaultTextGenerator, GetTextGenerator, TextGeneratorFn } from "./utils";
 export type { BreadCrumb } from "./types";
 
 export { createNextCrumbComponent };
