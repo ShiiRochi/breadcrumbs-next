@@ -217,3 +217,4 @@ ___
 
 ## Backlog
 Here I would place any ideas to make in the future.
+- [ ] add support for query params to be items of breadcrumbs
