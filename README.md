@@ -3,11 +3,20 @@
 ## Table of contents
 
 - [Breadcrumbs for NextJS](#breadcrumbs-for-nextjs)
+    - [Installation](#installation)
     - [Behind The Scenes](#behind-the-scenes)
     - [Contents](#contents)
     - [Type Aliases](#type-aliases)
     - [Components](#components)
     - [Functions](#functions)
+
+## Installation
+
+> npm install breadcrumbs-next
+
+or  
+
+> yarn install breadcrumbs-next
 
 ## Behind The Scenes
 <details>
