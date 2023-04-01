@@ -79,21 +79,17 @@ They are behaviour modifiers of the page, but not its primary descriptor.
 
 ### BreadCrumb
 
-Ƭ **BreadCrumb**: `Object`
-
 #### Type declaration
 
-| Name            | Type                        |
-|:----------------|:----------------------------|
-| `href`          | `string`                    |
-| `text`          | `string`                    |
-| `textGenerator` | ``null or TextGeneratorFn`` |
+| Name            | Type                                            |
+|:----------------|:------------------------------------------------|
+| `href`          | `string`                                        |
+| `text`          | `string`                                        |
+| `textGenerator` | `null` or [`TextGeneratorFn`](#textgeneratorfn) |
 
 ___
 
 ### CrumbProps
-
-Ƭ **CrumbProps**: `Object`
 
 #### Index signature
 
@@ -111,11 +107,9 @@ ___
 
 ### GetDefaultTextGenerator
 
-Ƭ **GetDefaultTextGenerator**: (`config`: { `href`: `string` ; `paramIndex`: `number` ; `paramName`: `string` ; `paramSlugIndex`: `number` ; `paramValue`: `string` ; `query`: `NextRouter`[``"query"``]  }) => `string`
-
 #### Type declaration
 
-▸ (`config`): `string`
+▸ (`config`) => `string`
 
 ##### Parameters
 
@@ -123,26 +117,21 @@ ___
 |:---------------------------|:--------------------------|
 | `config`                   | `Object`                  |
 | `config.href`              | `string`                  |
+| `config.isCatchAllSubpath` | `boolean`                 |
 | `config.paramIndex`        | `number`                  |
 | `config.paramName`         | `string`                  |
 | `config.isCatchAllSubpath` | `boolean`                 |
 | `config.paramSlugIndex`    | `null or number`          |
 | `config.paramValue`        | `string`                  |
 | `config.query`             | `NextRouter`[``"query"``] |
-
-##### Returns
-
-`string`
 
 ___
 
 ### GetTextGenerator
 
-Ƭ **GetTextGenerator**: (`config`: { `href`: `string` ; `paramIndex`: `number` ; `paramName`: `string` ; `paramSlugIndex`: `number` ; `paramValue`: `string` ; `query`: `NextRouter`[``"query"``]  }) => ``null`` | [`TextGeneratorFn`](#textgeneratorfn)
-
 #### Type declaration
 
-▸ (`config`): ``null`` | [`TextGeneratorFn`](#textgeneratorfn)
+▸ (`config`) => ``null`` | [`TextGeneratorFn`](#textgeneratorfn)
 
 ##### Parameters
 
@@ -150,71 +139,58 @@ ___
 |:---------------------------|:--------------------------|
 | `config`                   | `Object`                  |
 | `config.href`              | `string`                  |
+| `config.isCatchAllSubpath` | `boolean`                 |
 | `config.paramIndex`        | `number`                  |
 | `config.paramName`         | `string`                  |
-| `config.isCatchAllSubpath` | `boolean`                 |
 | `config.paramSlugIndex`    | `null or number`          |
 | `config.paramValue`        | `string`                  |
 | `config.query`             | `NextRouter`[``"query"``] |
-
-##### Returns
-
-``null`` | `TextGeneratorFn`
 
 ___
 
 ### NextBreadcrumbsProps
 
-Ƭ **NextBreadcrumbsProps**: `Object`
-
 #### Type declaration
 
-| Name                         | Type                                    |
-|:-----------------------------|:----------------------------------------|
-| `Container`                  | `string` or `FC<{children: ReactNode}>` |
-| `Crumb`                      | `FC<CrumbProps>`                        |
-| `getDefaultTextGenerator?`   | `GetDefaultTextGenerator`               |
-| `getTextGenerator?`          | `GetTextGenerator`                      |
-| `homeText?`                  | `string`                                |
-| `useQueryParamsAsPathItems?` | `string[]`                              |
+| Name                         | Type                                                  |
+|:-----------------------------|:------------------------------------------------------|
+| `Container`                  | `string` or `FC<{children: ReactNode}>`               |
+| `Crumb`                      | `FC<`[`CrumbProps`](#crumbprops)`>`                   |
+| `getDefaultTextGenerator?`   | [`GetDefaultTextGenerator`](#getdefaulttextgenerator) |
+| `getTextGenerator?`          | [`GetTextGenerator`](#gettextgenerator)               |
+| `homeText?`                  | `string`                                              |
+
+#### Used in:
+
+- [NextBreadcrumbs](#nextbreadcrumbs)
 
 ___
 
 ### TextGeneratorFn
 
-Ƭ **TextGeneratorFn**: () = `string` | `Promise<string>`
-
 #### Type declaration
 
-▸ ():  `string` | `Promise<string>`
+▸ () => `string` | `Promise<string>`
 
-##### Returns
+#### Used in:
 
-`Promise<string>`
+- [GetTextGenerator](#gettextgenerator)
 
 ## Components
 
 ### NextBreadcrumbs
 
-▸ **NextBreadcrumbs**(`«destructured»`): `JSX.Element`
+#### Props
 
-#### Parameters
-
-| Name             | Type                   |
-|:-----------------|:-----------------------|
-| `«destructured»` | `NextBreadcrumbsProps` |
-
-#### Returns
-
-`JSX.Element`
+| Name         | Type                                            |
+|:-------------|:------------------------------------------------|
+| `{...props}` | [`NextBreadcrumbsProps`](#nextbreadcrumbsprops) |
 
 ___
 
 ## Functions
 
 ### createNextCrumbComponent
-
-▸ **createNextCrumbComponent**(`Component`): `FC<{ text: string ; textGenerator: null | TextGeneratorFn  }\>`
 
 #### Parameters
 
@@ -224,8 +200,8 @@ ___
 
 #### Returns
 
-`FC<{ text: string; textGenerator: null | TextGeneratorFn }>`
+`FC<{ text: string; textGenerator: null | `[`TextGeneratorFn`](#textgeneratorfn)` }>`
 
 ## Backlog
-Here I would place any ideas to make in the future.
+
 - [ ] add support for query params to be items of breadcrumbs
