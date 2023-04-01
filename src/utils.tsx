@@ -14,7 +14,7 @@ export type GetDefaultTextGenerator = (config: {
   query: NextRouter['query'];
 }) => string;
 
-export type TextGeneratorFn = () => Promise<string>;
+export type TextGeneratorFn = () => string | Promise<string>;
 
 export type GetTextGenerator = (config: {
   paramName: string;
