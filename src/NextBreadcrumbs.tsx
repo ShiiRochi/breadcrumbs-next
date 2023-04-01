@@ -10,6 +10,7 @@ import {
   TextGeneratorFn,
 } from './utils';
 import { BreadCrumb } from './types';
+import { useRouter } from "next/router";
 
 export type CrumbProps = {
   href: string;

@@ -11,12 +11,16 @@
     - [Functions](#functions)
 
 ## Installation
+```shell
+npm install breadcrumbs-next
+```
+```shell
+yarn install breadcrumbs-next
+```
+```shell
+pnpm install breadcrumbs-next
+```
 
-> npm install breadcrumbs-next
-
-or  
-
-> yarn install breadcrumbs-next
 
 ## Behind The Scenes
 <details>
@@ -56,20 +60,20 @@ They are behaviour modifiers of the page, but not its primary descriptor.
 
 ### Type Aliases
 
-- BreadCrumb
-- CrumbProps
-- GetDefaultTextGenerator
-- GetTextGenerator
-- NextBreadcrumbsProps
-- TextGeneratorFn
+- [BreadCrumb](#breadcrumb)
+- [CrumbProps](#crumbprops)
+- [NextBreadcrumbsProps](#nextbreadcrumbsprops)
+- [GetDefaultTextGenerator](#getdefaulttextgenerator)
+- [GetTextGenerator](#gettextgenerator)
+- [TextGeneratorFn](#textgeneratorfn)
 
 ### Components
 
-- NextBreadcrumbs
+- [NextBreadcrumbs](#nextbreadcrumbs)
 
 ### Functions
 
-- createNextCrumbComponent
+- [createNextCrumbComponent](#createnextcrumbcomponent)
 
 ## Type Aliases
 
@@ -134,11 +138,11 @@ ___
 
 ### GetTextGenerator
 
-Ƭ **GetTextGenerator**: (`config`: { `href`: `string` ; `paramIndex`: `number` ; `paramName`: `string` ; `paramSlugIndex`: `number` ; `paramValue`: `string` ; `query`: `NextRouter`[``"query"``]  }) => ``null`` \| [`TextGeneratorFn`](modules.md#textgeneratorfn)
+Ƭ **GetTextGenerator**: (`config`: { `href`: `string` ; `paramIndex`: `number` ; `paramName`: `string` ; `paramSlugIndex`: `number` ; `paramValue`: `string` ; `query`: `NextRouter`[``"query"``]  }) => ``null`` | [`TextGeneratorFn`](#textgeneratorfn)
 
 #### Type declaration
 
-▸ (`config`): ``null`` \| [`TextGeneratorFn`](modules.md#textgeneratorfn)
+▸ (`config`): ``null`` | [`TextGeneratorFn`](#textgeneratorfn)
 
 ##### Parameters
 
@@ -165,28 +169,28 @@ ___
 
 #### Type declaration
 
-| Name                         | Type                                     |
-|:-----------------------------|:-----------------------------------------|
-| `Container`                  | `string` or `FC<{children: ReactNode}\>` |
-| `Crumb`                      | `FC<CrumbProps>`                         |
-| `getDefaultTextGenerator?`   | `GetDefaultTextGenerator`                |
-| `getTextGenerator?`          | `GetTextGenerator`                       |
-| `homeText?`                  | `string`                                 |
-| `useQueryParamsAsPathItems?` | `string[]`                               |
+| Name                         | Type                                    |
+|:-----------------------------|:----------------------------------------|
+| `Container`                  | `string` or `FC<{children: ReactNode}>` |
+| `Crumb`                      | `FC<CrumbProps>`                        |
+| `getDefaultTextGenerator?`   | `GetDefaultTextGenerator`               |
+| `getTextGenerator?`          | `GetTextGenerator`                      |
+| `homeText?`                  | `string`                                |
+| `useQueryParamsAsPathItems?` | `string[]`                              |
 
 ___
 
 ### TextGeneratorFn
 
-Ƭ **TextGeneratorFn**: () => `Promise`<`string`\>
+Ƭ **TextGeneratorFn**: () = `string` | `Promise<string>`
 
 #### Type declaration
 
-▸ (): `Promise`<`string`\>
+▸ ():  `string` | `Promise<string>`
 
 ##### Returns
 
-`Promise`<`string`\>
+`Promise<string>`
 
 ## Components
 
@@ -214,13 +218,13 @@ ___
 
 #### Parameters
 
-| Name        | Type                           |
-|:------------|:-------------------------------|
-| `Component` | `FC<{ children: ReactNode }\>` |
+| Name        | Type                          |
+|:------------|:------------------------------|
+| `Component` | `FC<{ children: ReactNode }>` |
 
 #### Returns
 
-`FC<{ text: string; textGenerator: null | TextGeneratorFn }\>`
+`FC<{ text: string; textGenerator: null | TextGeneratorFn }>`
 
 ## Backlog
 Here I would place any ideas to make in the future.
