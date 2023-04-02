@@ -22,7 +22,9 @@
     "postbuild": "rm -rf dist/types",
     "build:watch": "rollup -c -w",
     "prepublishOnly": "yarn build",
-    "gendoc": "typedoc --options typedoc.config.js"
+    "gendoc": "typedoc --options typedoc.config.js",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
   },
   "license": "MIT",
   "devDependencies": {
