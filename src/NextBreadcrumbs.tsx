@@ -12,16 +12,17 @@ import {
 import { BreadCrumb } from './types';
 import { useRouter } from "next/router";
 
-export type CrumbProps = {
+export type CrumbComponentProps = {
   href: string;
   text: string;
   isLast: boolean;
-
-  [key: string]: any;
+  isFirst: boolean;
+  textGenerator: null | TextGeneratorFn;
 };
+
 export type NextBreadcrumbsProps = {
   Container: string | FC<{ children: ReactNode }>;
-  Crumb: FC<CrumbProps>;
+  Crumb: FC<CrumbComponentProps>;
   // TODO: think about two props below,
   //  it may be that there is no need to have them both
   getTextGenerator?: GetTextGenerator;
@@ -32,19 +33,13 @@ export type NextBreadcrumbsProps = {
   homeText?: string;
 };
 
-export function createNextCrumbComponent(Component: FC<{ children: ReactNode }>): FC<{
-  text: string;
-  textGenerator: null | TextGeneratorFn;
-}> {
+export function createNextCrumbComponent(Component: FC<Omit<CrumbComponentProps, "textGenerator">>): FC<CrumbComponentProps> {
   function NextCrumb({
-    text,
+    text: _text,
     textGenerator,
     ...props
-  }: {
-    text: string;
-    textGenerator: null | TextGeneratorFn;
-  }): JSX.Element {
-    const [children, setChildren] = useState(text);
+  }: CrumbComponentProps): JSX.Element {
+    const [text, setText] = useState(_text);
 
     useEffect(() => {
       if (!textGenerator) return;
@@ -52,13 +47,13 @@ export function createNextCrumbComponent(Component: FC<{ children: ReactNode }>)
       // TODO: maybe it's better to use subscription model
       async function handler() {
         const text = await (textGenerator as TextGeneratorFn)();
-        setChildren(text);
+        setText(text);
       }
 
       handler();
     }, [textGenerator]);
 
-    return <Component {...props}>{children}</Component>;
+    return <Component {...props} text={text}/>;
   }
 
   NextCrumb.displayName = `NextCrumb`;
@@ -152,7 +147,7 @@ export default function NextBreadcrumbs({
   return (
     <Container aria-label="breadcrumb">
       {breadcrumbs.map((crumb, idx) => {
-        return flexRender(Crumb, {
+        return flexRender<CrumbComponentProps & { key: number | string }>(Crumb, {
           ...crumb,
           key: idx,
           isLast: idx === breadcrumbs.length - 1,
