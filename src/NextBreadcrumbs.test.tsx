@@ -36,8 +36,6 @@ describe('NextBreadcrumbs', () => {
         paramName,
         paramValue
     }) => {
-      console.log({ paramName, paramValue });
-
       if (paramName === "projectId" && paramValue === "232") return "Spreading";
 
       return paramValue;
