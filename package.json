@@ -25,6 +25,7 @@
     "gendoc": "typedoc --options typedoc.config.js",
     "test": "vitest",
     "coverage": "vitest run --coverage",
+    "install-peers": "yarn add --peer react react-dom next"
   },
   "license": "MIT",
   "devDependencies": {
