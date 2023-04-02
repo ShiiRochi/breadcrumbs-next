@@ -9,6 +9,8 @@
     - [Type Aliases](#type-aliases)
     - [Components](#components)
     - [Functions](#functions)
+    - [Testing](#testing)
+    - [TODOs](#backlog)
 
 ## Installation
 ```shell
@@ -61,7 +63,7 @@ They are behaviour modifiers of the page, but not its primary descriptor.
 ### Type Aliases
 
 - [BreadCrumb](#breadcrumb)
-- [CrumbProps](#crumbprops)
+- [CrumbComponentProps](#crumbcomponentprops)
 - [NextBreadcrumbsProps](#nextbreadcrumbsprops)
 - [GetDefaultTextGenerator](#getdefaulttextgenerator)
 - [GetTextGenerator](#gettextgenerator)
@@ -89,19 +91,17 @@ They are behaviour modifiers of the page, but not its primary descriptor.
 
 ___
 
-### CrumbProps
+### CrumbComponentProps
 
-#### Index signature
+#### Type Declaration
 
-▪ [key: `string`]: `any`
-
-#### Type declaration
-
-| Name     | Type      |
-|:---------|:----------|
-| `href`   | `string`  |
-| `isLast` | `boolean` |
-| `text`   | `string`  |
+| Name            | Type                                              |
+|:----------------|:--------------------------------------------------|
+| `href`          | `string`                                          |
+| `isFirst`       | `boolean`                                         |
+| `isLast`        | `boolean`                                         |
+| `text`          | `string`                                          |
+| `textGenerator` | ``null`` or [`TextGeneratorFn`](#textgeneratorfn) |
 
 ___
 
@@ -155,7 +155,7 @@ ___
 | Name                         | Type                                                  |
 |:-----------------------------|:------------------------------------------------------|
 | `Container`                  | `string` or `FC<{children: ReactNode}>`               |
-| `Crumb`                      | `FC<`[`CrumbProps`](#crumbprops)`>`                   |
+| `Crumb`                      | `FC<`[`CrumbComponentProps`](#crumbcomponentprops)`>` |
 | `getDefaultTextGenerator?`   | [`GetDefaultTextGenerator`](#getdefaulttextgenerator) |
 | `getTextGenerator?`          | [`GetTextGenerator`](#gettextgenerator)               |
 | `homeText?`                  | `string`                                              |
@@ -194,14 +194,23 @@ ___
 
 #### Parameters
 
-| Name        | Type                          |
-|:------------|:------------------------------|
-| `Component` | `FC<{ children: ReactNode }>` |
+| Name        | Type                                                                         |
+|:------------|:-----------------------------------------------------------------------------|
+| `Component` | `FC<Omit<`[`CrumbComponentProps`](#crumbcomponentprops)`, "textGenerator">>` |
 
 #### Returns
 
-`FC<{ text: string; textGenerator: null | `[`TextGeneratorFn`](#textgeneratorfn)` }>`
+`FC`<[`CrumbComponentProps`](modules.md#crumbcomponentprops)>
 
-## Backlog
+## Testing
+
+```shell
+yarn install-peers
+yarn vitest
+```
+
+## TODOs
 
 - [ ] add support for query params to be items of breadcrumbs
+- [ ] add all required tests
+
