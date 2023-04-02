@@ -17,6 +17,8 @@
   },
   "exclude": [
     "node_modules",
-    "examples"
+    "examples",
+    "tests",
+    "vitest.config.ts"
   ]
 }
